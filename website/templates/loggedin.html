@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title%}Home{% endblock %}
+
+{% block content %}
+<h1 align="center">Hi {{ user.first_name }}</h1>
+
+<div align="center">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    
+    <a class="btn btn-primary" href="/createworkout">Create workout</a>
+    <a class="btn btn-primary" href="/makeanentry">Log a workout</a>
+    <a class="btn btn-primary" href="/viewstats">View Stats</a>
+    
+</div>
+
+{% endblock %}

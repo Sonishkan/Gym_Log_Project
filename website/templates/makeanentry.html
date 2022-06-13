@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title%}Home{% endblock %}
+
+{% block content %}
+<h1 align="center">Make an entry</h1>
+
+{%for workout in user.workouts%}
+{{workout.name}}
+{%endfor%}
+
+{%for exercise in user.exercises%}
+{{exercise.name}}
+{%endfor%}
+
+
+
+{% endblock %}

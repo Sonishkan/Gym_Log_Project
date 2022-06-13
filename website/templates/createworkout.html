@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title%}Home{% endblock %}
+
+{% block content %}
+<h1 align="center">Create a workout</h1>
+
+<div>
+
+    <form method="POST">
+
+        <div class="form-group">
+            <lable for="workoutname">Name of workout</lable>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="workoutname" 
+                name="workoutname" 
+                placeholder="Enter workout name"
+            />
+        </div>
+        <div class="form-group">
+            <lable for="workoutdescription">Description of workout</lable>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="workoutdescription" 
+                name="workoutdescription" 
+                placeholder="Enter workout description"
+            />
+        </div>
+        <div class="form-group">
+            <lable for="numberofexercise">Number of exercises <br /> </lable>
+            <input class="form-control"  type="text" id="numberofexercise" name="numberofexercise" placeholder="Enter number of exercises"> <br/> 
+            <a class="btn btn-secondary" href="#" id="filldetails" onclick="addFields()">Fill Details </a>
+            <div id="container"/>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div style = "position:relative" left="80px">
+            <button type="submit" class="btn btn-primary">Save Workout</button>
+        </div>
+    </form>
+    
+</div>
+{% endblock %}
