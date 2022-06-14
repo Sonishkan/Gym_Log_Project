@@ -78,9 +78,11 @@ def sign_up():
 
     return render_template("sign_up.html", user=current_user)
 
+## 
 @auth.route('/createworkout', methods=['GET', 'POST'])
 @login_required
 def createworkout():
+
     if request.method == 'POST':
         workoutname = request.form.get('workoutname')
         workoutdescription = request.form.get('workoutdescription')
