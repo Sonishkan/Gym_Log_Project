@@ -17,7 +17,7 @@ This project utilizes:
 - python
 - flask
 - html
-- jinja
+- jinja templating for HTML
 - SQL
 
 
