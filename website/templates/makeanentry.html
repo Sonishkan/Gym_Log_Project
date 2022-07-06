@@ -1,5 +1,14 @@
 <!DOCTYPE html>
+
 {% extends "base.html" %}
+<script>
+    function DoSubmit(){
+        var workoutID = document.getElementById('workouts');
+        alert(workoutID + "hello");
+        return true;
+    }
+</script>
+
 {% block title%}Home{% endblock %}
 
 {% block content %}
@@ -9,10 +18,25 @@
 {{workout.name}}
 {%endfor%}
 
+<br/>
+<br/>
+
 {%for exercise in user.exercises%}
 {{exercise.name}}
 {%endfor%}
 
+
+
+<form name="chooseWorkout" onsubmit="DoSubmit()">
+    <label for="workouts">Choose a workout:</label>
+    <select name="workouts" id="workouts">
+        {%for workout in user.workouts%}
+        <option value="[workout.name]">{{workout.name}}</option>
+        {%endfor%}
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
 
 
 {% endblock %}
