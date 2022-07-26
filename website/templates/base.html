@@ -2,6 +2,7 @@
 <html>
     <head>
         <script type="text/javascript">
+
             function addFields(){
                 // Generate a dynamic number of inputs
                 var number = document.getElementById("numberofexercise").value;
@@ -25,6 +26,27 @@
                     container.appendChild(document.createElement("br"));
                 }
             }
+
+            function DoSubmit(){
+                
+                var workoutID = document.getElementById('workouts');
+                //print(workoutID + "hello");
+                alert("help");
+                
+            }
+
+            function notEmpty(){
+
+                var e = document.getElementById("field_6");
+                var strUser = e.options[e.selectedIndex].index;
+                document.getElementById('aggregator_name').innerHTML = strUser;
+                
+                }
+            notEmpty()
+                    
+                document.getElementById("field_6").onchange = notEmpty;
+                    
+
         </script>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

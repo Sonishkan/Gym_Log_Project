@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 
 {% extends "base.html" %}
-<script>
-    function DoSubmit(){
-        var workoutID = document.getElementById('workouts');
-        alert(workoutID + "hello");
-        return true;
-    }
-</script>
+
 
 {% block title%}Home{% endblock %}
 
 {% block content %}
+
 <h1 align="center">Make an entry</h1>
 
 {%for workout in user.workouts%}
 {{workout.name}}
+{{workout.id}}
 {%endfor%}
 
 <br/>
@@ -25,18 +21,45 @@
 {{exercise.name}}
 {%endfor%}
 
+<button onclick="DoSubmit()"> help </button>
 
+<br/>
 
-<form name="chooseWorkout" onsubmit="DoSubmit()">
-    <label for="workouts">Choose a workout:</label>
-    <select name="workouts" id="workouts">
-        {%for workout in user.workouts%}
+<select class="text_select" id="field_6" name="field_6" onchange = "notEmpty()">    
+    <option value="- Select -">- Select -</option>  
+    {%for workout in user.workouts%}
         <option value="[workout.name]">{{workout.name}}</option>
         {%endfor%}
     </select>
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
+    
+<label class="form_field">You selected option <span id="aggregator_name"></span></label>
+
+{%for workout in user.workouts %}
+        <a value="[workout.name]">{{workout.id}}</a>
+        <a value="[workout.name]">hi</a>
+{%endfor%}
+
+{%set x = 2%}
+<form >
+{%for exercise in user.exercises%}
+    
+    {%if exercise.workout_id == x%}
+        
+        <label for="name">{{exercise.name}}</label><br/>
+        <label for="reps">No. of reps</label>
+        <input type="number" id="[exercise.name]reps" name="[exercise.name]reps" value="0">
+        <label for="weight">Weight lifted(kg)</label>
+        <input type="float" id="[exercise.name]mass" name="[exercise.name]mass" value="0"><br><br>
+
+    {%endif%}
+{%endfor%}
+<input type="submit" value="Submit">
+ 
+</form> 
+    
 
 
-{% endblock %}
+
+
+
+{%endblock%}
