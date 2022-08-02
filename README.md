@@ -18,7 +18,7 @@ This project utilizes:
 - flask
 - html
 - jinja templating for HTML
-- SQL
+- sqlalchemy
 
 
 Research/Tutorials used:
