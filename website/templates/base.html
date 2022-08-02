@@ -38,7 +38,7 @@
             function notEmpty(){
 
                 var e = document.getElementById("field_6");
-                var strUser = e.options[e.selectedIndex].index;
+                var strUser = e.options[e.selectedIndex].label;
                 document.getElementById('aggregator_name').innerHTML = strUser;
                 
                 }
@@ -61,6 +61,8 @@
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             crossorigin="anonymous"
         />
+
+        
         <title>{% block title %}Home{% endblock %}</title>
     </head>
     <body>

@@ -102,12 +102,25 @@ def createworkout():
             
             i=i+1
         
+        flash('Workout added to database', category='success')
+        
     return render_template("createworkout.html", user=current_user)
 
-@auth.route('/makeanentry')
+@auth.route('/makeanentry', methods=['GET', 'POST'])
 @login_required
 def makeanentry():
+    workout_id = ""
+    if request.method == 'POST':
+        if 'submitOption' in request.form:
+            workout_id = request.form.get('field_6')
+            #return(str(select)) # just to see what select is
+        
 
-    
+            return render_template("makeanentry.html", user=current_user, workout_id=workout_id)
+        elif 'submitWorkout' in request.form:
 
-    return render_template("makeanentry.html", user=current_user)
+            flash('Workout session added to database', category='success')
+
+            return render_template("makeanentry.html", user=current_user, workout_id=workout_id)
+
+    return render_template("makeanentry.html", user=current_user, workout_id=workout_id)
