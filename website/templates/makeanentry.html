@@ -33,20 +33,25 @@
 {% if workout_id != "" %}
     {% set x =  workout_id %}
 
+
     {% set x = x | int %}
 
     <form method = "POST">
-        {%for exercise in user.exercises%}
         
+
+        {%for exercise in user.exercises%}
+
             {% if exercise.workout_id == x %}
+                
                 <label style="font-weight:bold; text-transform: uppercase" for="name">{{exercise.name}}</label><br/>
                 <label for="reps">No. of reps</label>
-                <input type="number" id="[exercise.name]reps" name="[exercise.name]reps" value="0">
+                <input type="number" id="{{exercise.id}}reps" name="{{exercise.id}}" value="0">
                 <label for="weight">Weight lifted(kg)</label>
-                <input type="float" id="[exercise.name]mass" name="[exercise.name]mass" value="0"><br><br><br>
+                <input type="float" id="{{exercise.id}}mass" name="{{exercise.id}}" value="0"><br><br><br>
         
             {%endif%}
         {%endfor%}
+        <input type="hidden" name="workoutid" value="{{workout_id}}">
         <input type="submit" name="submitWorkout" value="Submit">
          
         </form> 

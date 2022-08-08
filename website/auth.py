@@ -114,12 +114,28 @@ def makeanentry():
         if 'submitOption' in request.form:
             workout_id = request.form.get('field_6')
             #return(str(select)) # just to see what select is
-        
-
             return render_template("makeanentry.html", user=current_user, workout_id=workout_id)
+
+
         elif 'submitWorkout' in request.form:
+            result = request.form
+            result1 = result.to_dict(flat=False)
+            workout_id = int(result1.get("workoutid")[0])
+            del result1["submitWorkout"] ## delets the last key/value from dictionary as it isnt needed for database
+            del result1["workoutid"] ## delets the last key/value from dictionary as it isnt needed for database
 
             flash('Workout session added to database', category='success')
+            
+            ## key from dict is the exercise id
+            for key in result1:
+                result.getlist(key)
+                print(result.getlist(key), flush=True)
+                new_log = Log(weight=result.getlist(key)[1], reps=result.getlist(key)[0], workout_id=workout_id, user_id=current_user.id, exercise_id=key)
+                db.session.add(new_log)
+                db.session.commit()
+
+            print(result1, (result1.keys()), flush=True)
+
 
             return render_template("makeanentry.html", user=current_user, workout_id=workout_id)
 
