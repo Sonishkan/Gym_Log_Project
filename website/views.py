@@ -16,10 +16,10 @@ def loggedin():
     return render_template("loggedin.html", user=current_user)
     
 
-@views.route('/viewstats')
-@login_required
-def viewstats():
-    return render_template("viewstats.html", user=current_user)
+#@views.route('/viewstats')
+#@login_required
+#def viewstats():
+#    return render_template("viewstats.html", user=current_user)
 
 
 

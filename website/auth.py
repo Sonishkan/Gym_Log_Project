@@ -140,3 +140,14 @@ def makeanentry():
             return render_template("makeanentry.html", user=current_user, workout_id=workout_id)
 
     return render_template("makeanentry.html", user=current_user, workout_id=workout_id)
+
+@auth.route('/viewstats', methods=['GET', 'POST'])
+@login_required
+def viewstats():
+    exercise_id = ""
+    if request.method == 'POST':
+        if 'submitOption' in request.form:
+            exercise_id = request.form.get('field_6')
+            return render_template("viewstats.html", user=current_user, exercise_id=exercise_id)
+    
+    return render_template("viewstats.html", user=current_user, exercise_id=exercise_id)

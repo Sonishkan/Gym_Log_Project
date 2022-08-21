@@ -4,4 +4,58 @@
 
 {% block content %}
 <h1 align="center">View Stats</h1>
+
+<br/>
+<a> 1. Select an exercise using the dropdown list </a><br/>
+<a> 2. Press 'Load Exercise' button </a><br/>
+<br/>
+
+<form method="POST">
+    <select class="text_select" id="field_6" name="field_6" onchange = "notEmpty()">    
+        <option value="- Select -">- Select -</option>  
+        {%for exercise in user.exercises%}
+            <option value="{{ exercise.id }}" label = "{{ exercise.name }}">{{exercise.name}}</option>
+            {%endfor%}
+        </select>
+
+    <button type="submit" name="submitOption"> Load   <span style="color: #2b7d96; font-style:italic" id="aggregator_name"></span>   graph </button>
+</form>
+
+
+{%if exercise_id != ""%}
+
+    {% set x =  exercise_id %}
+    {% set x = x | int %}
+    
+          
+            
+        
+        
+    <table id="cartGrid" style="width:100%">
+        <tr>
+            <th>Exercise ID</th>
+            <th>Weight</th>
+            <th>Reps</th>
+            <th>Date</th>
+        </tr>
+            {%for log in user.logs%}
+                {%if log.exercise_id == x%}
+        <tr>
+            <td>{{log.exercise_id}}</td>
+            <td>{{log.weight}}</td>
+            <td>{{log.reps}}</td>
+            <td>{{log.date}}</td>
+          </tr>
+
+        
+                {%endif%}
+    
+
+    
+
+            {%endfor%}
+    </table>
+{%endif%}
+
+
 {% endblock %}
