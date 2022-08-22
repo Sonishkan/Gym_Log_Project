@@ -22,6 +22,50 @@
 </form>
 
 
+<div id="myChart" style="width:100%; max-width:600px; height:500px;"></div>
+
+
+
+<script>
+        google.charts.load('current',{packages:['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+
+
+        function drawChart() {
+
+
+        // Set Data
+        const table = document.querySelector('table')
+        const arr = [...table.rows].map(r => [...r.querySelectorAll('td, th')].map(td => td.textContent))
+        console.log(arr)
+        var weightbydate = [];
+        weightbydate.push([arr[0][3], arr[0][1]])
+
+        for (let i = 1; i<arr.length; i++){
+
+            weightbydate.push([ new Date(1776, 6, 4+i, 12, 30, 0, 0), parseInt(arr[i][1])  ]) // first index is row, second is column
+        
+        }
+    
+        document.getElementById("demo").innerHTML = weightbydate[0];
+
+        var data = google.visualization.arrayToDataTable(weightbydate)
+    
+        // Set Options
+        var options = {
+            title: 'Weight Over Time',
+            hAxis: {title: 'Date'},
+            vAxis: {title: 'Weight'},
+            legend: 'none'
+        };
+        // Draw Chart
+        var chart = new google.visualization.LineChart(document.getElementById('myChart'));
+        chart.draw(data, options);
+        }
+        </script>
+
+
 {%if exercise_id != ""%}
 
     {% set x =  exercise_id %}
@@ -29,7 +73,7 @@
     
           
             
-        
+    <div hidden>
         
     <table id="cartGrid" style="width:100%">
         <tr>
@@ -55,6 +99,22 @@
 
             {%endfor%}
     </table>
+
+    
+    
+    
+
+    <input type = "button" onclick = "getchange()" value = "Message Print">
+    <p id="demo"></p>
+
+    </div>
+    
+    
+    
+
+    
+    
+
 {%endif%}
 
 

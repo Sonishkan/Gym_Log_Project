@@ -1,8 +1,10 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 import requests
+
 from .models import *
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
+
 from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
@@ -151,3 +153,4 @@ def viewstats():
             return render_template("viewstats.html", user=current_user, exercise_id=exercise_id)
     
     return render_template("viewstats.html", user=current_user, exercise_id=exercise_id)
+

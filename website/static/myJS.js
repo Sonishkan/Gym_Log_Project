@@ -1,3 +1,9 @@
+
+src="https://www.gstatic.com/charts/loader.js">
+
+google.charts.load('current',{packages:['corechart']});
+google.charts.setOnLoadCallback(convertTable);
+
 function addFields(){
     // Generate a dynamic number of inputs
     var number = document.getElementById("numberofexercise").value;
@@ -40,4 +46,34 @@ function notEmpty(){
 notEmpty()
         
     document.getElementById("field_6").onchange = notEmpty;
+
+
+    
+function convertTable(){
+    const table = document.querySelector('table')
+    const arr = [...table.rows].map(r => [...r.querySelectorAll('td, th')].map(td => td.textContent))
+    console.log(arr)
+    var weightbydate = [];
+    for (let i = 0; i<arr.length; i++){
+
+        weightbydate.push([ arr[i][1], new Date(arr[i][3]) ]) // first index is row, second is column
         
+    }
+    
+    document.getElementById("demo").innerHTML = weightbydate[0];
+
+    var data = google.visualization.arrayToDataTable(weightbydate)
+    
+    // Set Options
+    var options = {
+        title: 'Weight Over Time',
+        hAxis: {title: 'Date'},
+        vAxis: {title: 'Weight'},
+        legend: 'none'
+    };
+    // Draw Chart
+    var chart = new google.visualization.LineChart(document.getElementById('myChart'));
+    chart.draw(data, options);
+
+}
+

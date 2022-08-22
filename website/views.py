@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, logout_user
 from requests import request
 from .models import *
 
@@ -8,6 +8,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
+    logout_user()
     return render_template("home.html", user=current_user)
 
 @views.route('/loggedin')
